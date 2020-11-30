@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "791274130323",
+    "firebase_url": "https://loc-mp1.firebaseio.com",
+    "project_id": "loc-mp1",
+    "storage_bucket": "loc-mp1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791274130323:android:be3faebf1bb93544147666",
+        "android_client_info": {
+          "package_name": "com.lucascabral.apploc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "791274130323-j253451u3h0v0dnr9sih55ck27bquqk6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lucascabral.apploc",
+            "certificate_hash": "a5ee796117267ccb5a65c398e13b5c8af49403a6"
+          }
+        },
+        {
+          "client_id": "791274130323-5iudvrbl2fbk82am91p0igb704r9pqnn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD1JZA88_Oz0Du3UgpNYjjSy2FYIbmDL8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "791274130323-5iudvrbl2fbk82am91p0igb704r9pqnn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
