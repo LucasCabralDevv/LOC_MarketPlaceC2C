@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/logo" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/authEmailEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_edit_text"
@@ -28,7 +28,7 @@
         android:padding="10dp" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/authSenhaEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="-1dp"
@@ -53,7 +53,7 @@
             android:text="@string/auth_logar_textView" />
 
         <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/switch1"
+            android:id="@+id/authSwitchAcesso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -71,7 +71,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/authAcessarButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
