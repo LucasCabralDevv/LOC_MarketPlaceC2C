@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">LOC</string>
+    <string name="splash_descriptionLogo_text">Logo da marca</string>
 </resources>
