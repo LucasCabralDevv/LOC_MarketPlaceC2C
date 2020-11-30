@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">LOC</string>
     <string name="splash_descriptionLogo_text">Logo da marca</string>
+    <string name="auth_email_hint">Email</string>
+    <string name="auth_content_description">Logo para tela de auth</string>
+    <string name="auth_senha_hint">Senha</string>
+    <string name="auth_logar_textView">Logar</string>
+    <string name="auth_cadastrar_textView">Cadastre-se</string>
+    <string name="auth_acessar_button">Acessar</string>
 </resources>

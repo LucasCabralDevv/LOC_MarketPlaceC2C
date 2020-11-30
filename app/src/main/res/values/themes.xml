@@ -13,4 +13,11 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    
+    <style name="butaoPadrao" parent="Theme.AppCompat.Light">
+
+        <item name="colorControlHighlight">#D500F9</item>
+        <item name="colorButtonNormal">@color/primary_500</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
 </resources>
