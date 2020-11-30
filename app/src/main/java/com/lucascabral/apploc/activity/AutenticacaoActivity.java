@@ -3,6 +3,7 @@ package com.lucascabral.apploc.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -42,37 +43,44 @@ public class AutenticacaoActivity extends AppCompatActivity {
                 String email = campoEmail.getText().toString();
                 String senha = campoSenha.getText().toString();
 
-                if (!email.isEmpty()){
-                    if (!senha.isEmpty()){
+                if (!email.isEmpty()) {
+                    if (!senha.isEmpty()) {
 
                         //Verifica estado do switch
-                        if (switchTipoAcesso.isChecked()){ //Cadastro
+                        if (switchTipoAcesso.isChecked()) { //Cadastro
 
                             fazerCadastro(email, senha);
 
-                        }else { //Login
+                        } else { //Login
 
-                            auth.signInWithEmailAndPassword(
-                                    email, senha
-                            ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()){
-
-                                        exibirMensagem("Bem-vindo ao LOC");
-                                    }else {
-
-                                        exibirMensagem("Erro ao fazer login: " + task.getException());
-                                    }
-                                }
-                            });
+                            fazerLogin(email, senha);
                         }
 
-                    }else {
+                    } else {
                         exibirMensagem("Preencha a senha!");
                     }
-                }else {
+                } else {
                     exibirMensagem("Preencha o e-mail!");
+                }
+            }
+        });
+    }
+
+    private void fazerLogin(String email, String senha) {
+
+        auth.signInWithEmailAndPassword(
+                email, senha
+        ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+
+                    exibirMensagem("Bem-vindo ao LOC");
+                    startActivity(new Intent(getApplicationContext(), AnunciosActivity.class));
+
+                } else {
+
+                    exibirMensagem("Erro ao fazer login: " + task.getException());
                 }
             }
         });
@@ -85,12 +93,12 @@ public class AutenticacaoActivity extends AppCompatActivity {
         ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if ( task.isSuccessful() ){
+                if (task.isSuccessful()) {
 
                     exibirMensagem("Cadastro realizado com sucesso");
 
 
-                }else {
+                } else {
 
                     // Criando tratamentos de exceções
                     String excecao = "";
@@ -112,14 +120,14 @@ public class AutenticacaoActivity extends AppCompatActivity {
         });
     }
 
-    private void exibirMensagem(String texto){
+    private void exibirMensagem(String texto) {
 
         Toast.makeText(AutenticacaoActivity.this,
                 texto,
                 Toast.LENGTH_LONG).show();
     }
 
-    private void inicializarComponentes(){
+    private void inicializarComponentes() {
 
         //Configuracoes firebase
         auth = ConfiguracaoFirebase.getFirebaseAutenticacao();

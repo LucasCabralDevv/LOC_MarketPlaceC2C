@@ -11,8 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppLOC">
-        <activity android:name=".activity.AutenticacaoActivity"></activity>
-        <activity android:name=".activity.SplashActivity">
+
+        <activity android:name=".activity.AnunciosActivity"/>
+        <activity android:name=".activity.AutenticacaoActivity" />
+
+        <activity
+            android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

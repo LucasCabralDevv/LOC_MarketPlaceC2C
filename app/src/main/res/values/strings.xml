@@ -7,4 +7,7 @@
     <string name="auth_logar_textView">Logar</string>
     <string name="auth_cadastrar_textView">Cadastre-se</string>
     <string name="auth_acessar_button">Acessar</string>
+    <string name="menu_anuncios_title">Meus anúncios</string>
+    <string name="menu_sair_title">Sair</string>
+    <string name="menu_logarCadastrar_title">Logar / Cadastrar</string>
 </resources>

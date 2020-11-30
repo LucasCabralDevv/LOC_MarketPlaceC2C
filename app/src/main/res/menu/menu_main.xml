@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:id="@+id/group_logado" android:visible="false" >
+
+        <item android:id="@+id/menu_anuncios"
+            android:title="@string/menu_anuncios_title"/>
+        <item android:id="@+id/menu_sair"
+            android:title="@string/menu_sair_title"/>
+    </group>
+
+    <group android:id="@+id/group_deslogado" android:visible="false" >
+
+        <item android:id="@+id/menu_logarCadastrar"
+            android:title="@string/menu_logarCadastrar_title"
+            app:showAsAction="always"/>
+    </group>
+
+</menu>
