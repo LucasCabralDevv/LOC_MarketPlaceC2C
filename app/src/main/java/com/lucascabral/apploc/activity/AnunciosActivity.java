@@ -58,6 +58,9 @@ public class AnunciosActivity extends AppCompatActivity {
                         "Usuário deslogado",
                         Toast.LENGTH_LONG).show();
                 break;
+            case R.id.menu_anuncios:
+                startActivity(new Intent(getApplicationContext(), MeusAnunciosActivity.class));
+                break;
 
         }
         return super.onOptionsItemSelected(item);
