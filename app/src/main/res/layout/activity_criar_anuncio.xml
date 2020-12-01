@@ -82,7 +82,7 @@
         android:inputType="number"
         android:padding="10dp" />
 
-    <com.santalu.maskara.widget.MaskEditText
+    <com.santalu.maskedittext.MaskEditText
         android:id="@+id/criarAnunTelefoneEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -92,9 +92,7 @@
         android:hint="@string/criarAnun_telefone_hint"
         android:inputType="phone"
         android:padding="10dp"
-        app:mask="+55 (__) _____-____"
-        app:maskCharacter="_"
-        app:maskStyle="completable" />
+        app:met_mask="(##) #####-####" />
 
     <EditText
         android:id="@+id/criarAnunDescricaoEdit"
@@ -112,7 +110,7 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="salvarAnuncio"
+        android:onClick="validarDadosAnuncio"
         android:text="@string/criarAnuncio_text_button"
         android:theme="@style/butaoPadrao" />
 </LinearLayout>

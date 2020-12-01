@@ -51,7 +51,7 @@ dependencies {
     implementation 'com.github.BlacKCaT27:CurrencyEditText:2.0.2'
 
     // Dependência para mascara telefone
-    implementation 'com.github.santalu:maskara:1.0.0'
+    implementation 'com.github.santalu:mask-edittext:1.0.7'
 
 }
     apply plugin: 'com.google.gms.google-services'

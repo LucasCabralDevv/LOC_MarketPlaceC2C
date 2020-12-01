@@ -20,11 +20,12 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.blackcat.currencyedittext.CurrencyEditText;
 import com.lucascabral.apploc.R;
 import com.lucascabral.apploc.helper.Permissoes;
-import com.santalu.maskara.widget.MaskEditText;
+import com.santalu.maskedittext.MaskEditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,12 +55,56 @@ public class CriarAnuncioActivity extends AppCompatActivity implements View.OnCl
         carregarDadosSpinners();
     }
 
-    public void salvarAnuncio(View view) {
+    public void validarDadosAnuncio(View view) {
 
-        String valor = campoValor.getText().toString();
+        String fone = "";
+        String estado = campoEstado.getSelectedItem().toString();
+        String categoria = campoCategoria.getSelectedItem().toString();
+        String titulo = campoTitulo.getText().toString();
+        String valor = String.valueOf(campoValor.getRawValue());
+        String telefone = campoTelefone.getText().toString();
+        if (campoTelefone.getRawText() != null){
+            fone = campoTelefone.getRawText().toString();
+        }
+        String descricao = campoDescricao.getText().toString();
 
-        String telefone = campoTelefone.getMasked();
-        Log.d("telefone", "Telefone anuncio: " + telefone);
+        if (listaFotosRecuperadas.size() != 0) {
+            if (!estado.equals("UF")) {
+                if (!categoria.equals("Categoria")) {
+                    if (!titulo.isEmpty()) {
+                        if (!valor.isEmpty() && !valor.equals("0")) {
+                            if (!telefone.isEmpty() && fone.length() >= 10) {
+                                if (!descricao.isEmpty()) {
+
+                                    salvarAnuncio();
+
+                                } else {
+                                    exibirMensagem("Por favor, preencha o campo descrição!");
+                                }
+                            } else {
+                                exibirMensagem("Por favor, preencha o campo telefone, " +
+                                        "digite ao menos 10 números!");
+                            }
+                        } else {
+                            exibirMensagem("Por favor, preencha o campo valor!");
+                        }
+                    } else {
+                        exibirMensagem("Por favor, preencha o campo título!");
+                    }
+                } else {
+                    exibirMensagem("Por favor, selecione uma categoria!");
+                }
+            } else {
+                exibirMensagem("Por favor, selecione um estado!");
+            }
+        } else {
+            exibirMensagem("Por favor, selecione ao menos uma foto!");
+        }
+    }
+
+    public void salvarAnuncio() {
+
+
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -154,6 +199,12 @@ public class CriarAnuncioActivity extends AppCompatActivity implements View.OnCl
                 alertValidacaoPermissao();
             }
         }
+    }
+
+    private void exibirMensagem(String texto){
+
+        Toast.makeText(CriarAnuncioActivity.this,
+                texto, Toast.LENGTH_LONG).show();
     }
 
     private void alertValidacaoPermissao() {

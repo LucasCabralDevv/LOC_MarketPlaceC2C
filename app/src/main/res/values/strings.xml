@@ -22,6 +22,7 @@
     <string name="criarAnun_telefone_hint">Telefone</string>
 
     <string-array name="estados">
+        <item>UF</item>
         <item>AC</item>
         <item>AL</item>
         <item>AM</item>
@@ -52,6 +53,7 @@
     </string-array>
 
     <string-array name="categorias">
+        <item>Categoria</item>
         <item>Automóveis</item>
         <item>Imóveis</item>
         <item>Eletrónicos</item>
