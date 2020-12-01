@@ -24,4 +24,5 @@
     <string name="criarAnuncio_descricao_hint">Descrição</string>
     <string name="criarAnuncio_valor_hint">Valor</string>
     <string name="criarAnuncio_text_button">Criar Anúncio</string>
+    <string name="criarAnun_telefone_hint">Telefone</string>
 </resources>

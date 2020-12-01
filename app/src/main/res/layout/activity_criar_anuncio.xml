@@ -56,7 +56,7 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/criarAnunTituloEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -66,19 +66,33 @@
         android:inputType="textPersonName"
         android:padding="10dp" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
+    <com.blackcat.currencyedittext.CurrencyEditText
+        android:id="@+id/criarAnunValorEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:background="@drawable/bg_edit_text"
         android:ems="10"
         android:hint="@string/criarAnuncio_valor_hint"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:padding="10dp" />
 
+    <com.santalu.maskara.widget.MaskEditText
+        android:id="@+id/criarAnunTelefoneEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_edit_text"
+        android:ems="10"
+        android:hint="@string/criarAnun_telefone_hint"
+        android:inputType="phone"
+        android:padding="10dp"
+        app:mask="+55 (__) _____-____"
+        app:maskCharacter="_"
+        app:maskStyle="completable" />
+
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/criarAnunDescricaoEdit"
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:layout_marginBottom="16dp"
@@ -86,12 +100,14 @@
         android:ems="10"
         android:hint="@string/criarAnuncio_descricao_hint"
         android:inputType="textPersonName"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColorLink="@color/accent_200" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="salvarAnuncio"
         android:text="@string/criarAnuncio_text_button"
-        android:theme="@style/butaoPadrao"/>
+        android:theme="@style/butaoPadrao" />
 </LinearLayout>

@@ -47,5 +47,11 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:15.0.0'
     implementation 'com.google.firebase:firebase-auth:15.0.0'
 
+    // Dependência para mascara moeda
+    implementation 'com.github.BlacKCaT27:CurrencyEditText:2.0.2'
+
+    // Dependência para mascara telefone
+    implementation 'com.github.santalu:maskara:1.0.0'
+
 }
     apply plugin: 'com.google.gms.google-services'
