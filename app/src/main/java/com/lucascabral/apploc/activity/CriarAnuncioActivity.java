@@ -16,8 +16,10 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import com.blackcat.currencyedittext.CurrencyEditText;
 import com.lucascabral.apploc.R;
@@ -30,10 +32,11 @@ import java.util.Locale;
 
 public class CriarAnuncioActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText camposTitulo, campoDescricao;
+    private EditText campoTitulo, campoDescricao;
     private CurrencyEditText campoValor;
     private MaskEditText campoTelefone;
     private ImageView imagem1, imagem2, imagem3;
+    private Spinner campoEstado, campoCategoria;
 
     private String[] permissoes = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE};
     private List<String> listaFotosRecuperadas = new ArrayList<>();
@@ -47,6 +50,8 @@ public class CriarAnuncioActivity extends AppCompatActivity implements View.OnCl
         Permissoes.validarPermissoes(permissoes, this, 1);
 
         inicializarComponenetes();
+
+        carregarDadosSpinners();
     }
 
     public void salvarAnuncio(View view) {
@@ -103,12 +108,31 @@ public class CriarAnuncioActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
+    private void carregarDadosSpinners() {
+
+        String[] estados = getResources().getStringArray(R.array.estados);
+        ArrayAdapter<String> adapterEstado = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, estados
+        );
+        adapterEstado.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        campoEstado.setAdapter(adapterEstado);
+
+        String[] categorias = getResources().getStringArray(R.array.categorias);
+        ArrayAdapter<String> adapterCategoria = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, categorias
+        );
+        adapterCategoria.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        campoCategoria.setAdapter(adapterCategoria);
+    }
+
     private void inicializarComponenetes() {
 
-        camposTitulo = findViewById(R.id.criarAnunTituloEdit);
+        campoTitulo = findViewById(R.id.criarAnunTituloEdit);
         campoDescricao = findViewById(R.id.criarAnunDescricaoEdit);
         campoValor = findViewById(R.id.criarAnunValorEdit);
         campoTelefone = findViewById(R.id.criarAnunTelefoneEdit);
+        campoEstado = findViewById(R.id.spinnerEstado);
+        campoCategoria = findViewById(R.id.spinnerCategoria);
         imagem1 = findViewById(R.id.criarAnunImageView1);
         imagem2 = findViewById(R.id.criarAnunImageView2);
         imagem3 = findViewById(R.id.criarAnunImageView3);
