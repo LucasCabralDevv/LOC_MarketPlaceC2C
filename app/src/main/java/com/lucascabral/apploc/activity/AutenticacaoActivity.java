@@ -77,6 +77,7 @@ public class AutenticacaoActivity extends AppCompatActivity {
 
                     exibirMensagem("Bem-vindo ao LOC");
                     startActivity(new Intent(getApplicationContext(), AnunciosActivity.class));
+                    finish();
 
                 } else {
 
@@ -96,6 +97,7 @@ public class AutenticacaoActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
 
                     exibirMensagem("Cadastro realizado com sucesso");
+                    startActivity(new Intent(getApplicationContext(), AnunciosActivity.class));
 
 
                 } else {

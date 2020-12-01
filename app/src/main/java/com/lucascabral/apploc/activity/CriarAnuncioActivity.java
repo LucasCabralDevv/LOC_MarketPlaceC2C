@@ -2,12 +2,12 @@ package com.lucascabral.apploc.activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -27,7 +27,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.lucascabral.apploc.R;
@@ -39,6 +38,8 @@ import com.santalu.maskedittext.MaskEditText;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import dmax.dialog.SpotsDialog;
 
 public class CriarAnuncioActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -53,6 +54,7 @@ public class CriarAnuncioActivity extends AppCompatActivity implements View.OnCl
     private final List<String> listaUrlFotos = new ArrayList<>();
     private Anuncio anuncio;
     private StorageReference storage;
+    private AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,13 @@ public class CriarAnuncioActivity extends AppCompatActivity implements View.OnCl
     }
 
     public void salvarAnuncio() {
+
+        dialog = new SpotsDialog.Builder()
+                .setContext(this)
+                .setMessage("Salvando Anúncio")
+                .setCancelable(false)
+                .build();
+        dialog.show();
 
         // Salvar imagem no Storage
         for (int i = 0; i < listaFotosRecuperadas.size(); i++) {
@@ -101,6 +110,7 @@ public class CriarAnuncioActivity extends AppCompatActivity implements View.OnCl
                         if (totalFotos == listaUrlFotos.size()){
                             anuncio.setFotos(listaUrlFotos);
                             anuncio.salvar();
+                            dialog.dismiss();
                             exibirMensagem("Anúncio salvo com sucesso");
                             finish();
                         }
@@ -122,7 +132,7 @@ public class CriarAnuncioActivity extends AppCompatActivity implements View.OnCl
         String estado = campoEstado.getSelectedItem().toString();
         String categoria = campoCategoria.getSelectedItem().toString();
         String titulo = campoTitulo.getText().toString();
-        String valor = String.valueOf(campoValor.getRawValue());
+        String valor = campoValor.getText().toString();
         String telefone = campoTelefone.getText().toString();
         String descricao = campoDescricao.getText().toString();
 
@@ -140,8 +150,8 @@ public class CriarAnuncioActivity extends AppCompatActivity implements View.OnCl
     public void validarDadosAnuncio(View view) {
 
         String fone = "";
-
         anuncio = configurarAnuncio();
+        String valor = String.valueOf(campoValor.getRawValue());
 
         if (campoTelefone.getRawText() != null) {
             fone = campoTelefone.getRawText().toString();
@@ -151,7 +161,7 @@ public class CriarAnuncioActivity extends AppCompatActivity implements View.OnCl
             if (!anuncio.getEstado().equals("UF")) {
                 if (!anuncio.getCategoria().equals("Categoria")) {
                     if (!anuncio.getTitulo().isEmpty()) {
-                        if (!anuncio.getValor().isEmpty() && !anuncio.getValor().equals("0")) {
+                        if (!valor.isEmpty() && !valor.equals("0")) {
                             if (!anuncio.getTelefone().isEmpty() && fone.length() >= 10) {
                                 if (!anuncio.getDescricao().isEmpty()) {
 
