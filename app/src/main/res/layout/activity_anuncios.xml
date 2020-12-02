@@ -16,11 +16,12 @@
         <Button
             android:id="@+id/anunciosRegiaoButton"
             style="?attr/buttonBarButtonStyle"
-            android:textColor="@color/primary_500"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/anuncios_regiao_button" />
+            android:onClick="filtrarPorRegiao"
+            android:text="@string/anuncios_regiao_button"
+            android:textColor="@color/primary_500" />
 
         <TextView
             android:id="@+id/textView3"

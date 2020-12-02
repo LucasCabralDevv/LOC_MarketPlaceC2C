@@ -6,11 +6,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,6 +41,7 @@ public class AnunciosActivity extends AppCompatActivity {
     private List<Anuncio> anunciosPublicos = new ArrayList<>();
     private DatabaseReference anunciosPublicosRef;
     private AlertDialog dialog;
+    private String filtroRegiao = "";
 
     private Button buttonRegiao, buttonCategoria;
 
@@ -48,6 +53,88 @@ public class AnunciosActivity extends AppCompatActivity {
         inicializarComponentes();
         configuraRecyclerView();
         recuperaAnunciosPublicos();
+    }
+
+    public void filtrarPorRegiao(View view) {
+
+        AlertDialog.Builder dialogRegiao = new AlertDialog.Builder(this);
+        dialogRegiao.setTitle("Selecione a região desejada");
+
+        //Configurar spinner
+        View viewSpinner = getLayoutInflater().inflate(R.layout.dialog_spinner, null);
+
+        Spinner spinnerRegiao = viewSpinner.findViewById(R.id.anunciosFiltroSpinner);
+        String[] estados = getResources().getStringArray(R.array.estados);
+        ArrayAdapter<String> adapterRegiao = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, estados);
+        adapterRegiao.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerRegiao.setAdapter(adapterRegiao);
+
+        dialogRegiao.setView(viewSpinner);
+
+        dialogRegiao.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                filtroRegiao = spinnerRegiao.getSelectedItem().toString();
+
+                if (!filtroRegiao.equals("UF")) {
+                    recuperarAnunciosPorRegiao();
+
+                } else {
+                    Toast.makeText(AnunciosActivity.this,
+                            "Escolha uma região!",
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        dialogRegiao.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        AlertDialog dialog = dialogRegiao.create();
+        dialog.show();
+    }
+
+    private void recuperarAnunciosPorRegiao() {
+
+        dialog = new SpotsDialog.Builder()
+                .setContext(this)
+                .setMessage("Carregando Anúncios")
+                .setCancelable(false)
+                .build();
+        dialog.show();
+
+        //Configura nó por estado
+        anunciosPublicosRef = ConfiguracaoFirebase.getFirebase()
+                .child("anuncios")
+                .child(filtroRegiao);
+        anunciosPublicosRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                anunciosPublicos.clear();
+                for (DataSnapshot categorias : snapshot.getChildren()) {
+                    for (DataSnapshot anuncios : categorias.getChildren()) {
+
+                        Anuncio anuncio = anuncios.getValue(Anuncio.class);
+                        anunciosPublicos.add(anuncio);
+                    }
+                }
+                Collections.reverse(anunciosPublicos);
+                adapterAnuncios.notifyDataSetChanged();
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void recuperaAnunciosPublicos() {
