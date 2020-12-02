@@ -3,8 +3,8 @@
     package="com.lucascabral.apploc">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -13,20 +13,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppLOC">
+        <activity android:name=".activity.DetalhesAnuncioActivity"
+            android:parentActivityName=".activity.AnunciosActivity"
+            android:label="Detalhes anúncio"/>
         <activity
             android:name=".activity.CriarAnuncioActivity"
             android:label="Criar anúncio"
-            android:parentActivityName=".activity.MeusAnunciosActivity"/>
+            android:parentActivityName=".activity.MeusAnunciosActivity" />
         <activity
             android:name=".activity.MeusAnunciosActivity"
             android:label="@string/title_activity_meus_anuncios"
-            android:theme="@style/Theme.AppLOC.NoActionBar"
-            android:parentActivityName=".activity.AnunciosActivity"/>
+            android:parentActivityName=".activity.AnunciosActivity"
+            android:theme="@style/Theme.AppLOC.NoActionBar" />
         <activity android:name=".activity.AnunciosActivity" />
         <activity android:name=".activity.AutenticacaoActivity" />
         <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

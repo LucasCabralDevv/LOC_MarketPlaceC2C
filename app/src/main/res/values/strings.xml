@@ -23,6 +23,7 @@
     <string name="anuncios_regiao_button">Região</string>
     <string name="anuncios_divisor_text">|</string>
     <string name="anuncios_categoria_button">Categoria</string>
+    <string name="detalhes_text_button">Ver Telefone</string>
 
     <string-array name="estados">
         <item>UF</item>

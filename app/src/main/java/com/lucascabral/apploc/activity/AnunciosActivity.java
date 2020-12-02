@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -25,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.lucascabral.apploc.R;
 import com.lucascabral.apploc.adapter.AdapterAnuncios;
 import com.lucascabral.apploc.firebase.ConfiguracaoFirebase;
+import com.lucascabral.apploc.helper.RecyclerItemClickListener;
 import com.lucascabral.apploc.model.Anuncio;
 
 import java.util.ArrayList;
@@ -45,16 +47,43 @@ public class AnunciosActivity extends AppCompatActivity {
     private String filtroCategoria = "";
     private boolean filtrandoPorRegiao = false;
 
-    private Button buttonRegiao, buttonCategoria;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anuncios);
 
         inicializarComponentes();
-        recuperaAnunciosPublicos();
+
         configuraRecyclerView();
+
+        recuperaAnunciosPublicos();
+
+        //Evento de click
+        recyclerAnuncios.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        this,
+                        recyclerAnuncios,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+
+                                Anuncio anuncioSelecionado = anunciosPublicos.get(position);
+                                Intent i = new Intent(AnunciosActivity.this, DetalhesAnuncioActivity.class);
+                                i.putExtra("anuncioSelecionado", anuncioSelecionado);
+                                startActivity(i);
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            }
+                        }
+                ));
 
     }
 
@@ -274,8 +303,6 @@ public class AnunciosActivity extends AppCompatActivity {
         anunciosPublicosRef = ConfiguracaoFirebase.getFirebase().child("anuncios");
 
         recyclerAnuncios = findViewById(R.id.anunciosRecyclerView);
-        buttonRegiao = findViewById(R.id.anunciosRegiaoButton);
-        buttonCategoria = findViewById(R.id.anunciosCategoriaButton);
     }
 
     @Override
