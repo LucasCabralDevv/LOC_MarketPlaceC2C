@@ -22,7 +22,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.lucascabral.apploc.R;
-import com.lucascabral.apploc.adapter.AdapterMeusAnuncios;
+import com.lucascabral.apploc.adapter.AdapterAnuncios;
 import com.lucascabral.apploc.firebase.ConfiguracaoFirebase;
 import com.lucascabral.apploc.helper.RecyclerItemClickListener;
 import com.lucascabral.apploc.model.Anuncio;
@@ -37,7 +37,7 @@ public class MeusAnunciosActivity extends AppCompatActivity {
 
     private RecyclerView recyclerMeusAnuncios;
     private List<Anuncio> anuncios = new ArrayList<>();
-    private AdapterMeusAnuncios adapterMeusAnuncios;
+    private AdapterAnuncios adapterAnuncios;
     private DatabaseReference anunciosUsuarioRef;
     private AlertDialog dialog;
 
@@ -61,9 +61,9 @@ public class MeusAnunciosActivity extends AppCompatActivity {
             }
         });
 
-        ConfiguraRecyclerView();
+        configuraRecyclerView();
 
-        recuperaAnuncios();
+        recuperaMeusAnuncios();
 
         // Evento de click
         recyclerMeusAnuncios.addOnItemTouchListener(
@@ -111,7 +111,7 @@ public class MeusAnunciosActivity extends AppCompatActivity {
 
                 anuncioSelecionado.excluirAnuncio();
 
-                adapterMeusAnuncios.notifyItemRemoved(position);
+                adapterAnuncios.notifyItemRemoved(position);
             }
         });
 
@@ -129,14 +129,15 @@ public class MeusAnunciosActivity extends AppCompatActivity {
         alert.show();
     }
 
-    private void ConfiguraRecyclerView() {
+    private void configuraRecyclerView() {
+
         recyclerMeusAnuncios.setLayoutManager(new LinearLayoutManager(this));
         recyclerMeusAnuncios.setHasFixedSize(true);
-        adapterMeusAnuncios = new AdapterMeusAnuncios(anuncios, this);
-        recyclerMeusAnuncios.setAdapter(adapterMeusAnuncios);
+        adapterAnuncios = new AdapterAnuncios(anuncios, this);
+        recyclerMeusAnuncios.setAdapter(adapterAnuncios);
     }
 
-    private void recuperaAnuncios() {
+    private void recuperaMeusAnuncios() {
 
         dialog = new SpotsDialog.Builder()
                 .setContext(this)
@@ -155,7 +156,7 @@ public class MeusAnunciosActivity extends AppCompatActivity {
                     anuncios.add(ds.getValue(Anuncio.class));
                 }
                 Collections.reverse(anuncios);
-                adapterMeusAnuncios.notifyDataSetChanged();
+                adapterAnuncios.notifyDataSetChanged();
                 dialog.dismiss();
             }
 
