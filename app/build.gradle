@@ -53,8 +53,11 @@ dependencies {
     // Dependência para mascara telefone
     implementation 'com.github.santalu:mask-edittext:1.0.7'
 
-    //Dependência SpotsDialog
+    // Dependência SpotsDialog
     implementation 'com.github.d-max:spots-dialog:1.1@aar'
+
+    // Dependência Picasso
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 
 }
     apply plugin: 'com.google.gms.google-services'

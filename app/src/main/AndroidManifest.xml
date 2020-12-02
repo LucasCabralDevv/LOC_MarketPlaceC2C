@@ -20,7 +20,8 @@
         <activity
             android:name=".activity.MeusAnunciosActivity"
             android:label="@string/title_activity_meus_anuncios"
-            android:theme="@style/Theme.AppLOC.NoActionBar" />
+            android:theme="@style/Theme.AppLOC.NoActionBar"
+            android:parentActivityName=".activity.AnunciosActivity"/>
         <activity android:name=".activity.AnunciosActivity" />
         <activity android:name=".activity.AutenticacaoActivity" />
         <activity android:name=".activity.SplashActivity">
